@@ -23,10 +23,22 @@ export async function getStaticProps(context) {
   const data = JSON.parse(jsonData);
 
   const product = data.products.find(product => product.id === productId);
+
   return {
     props: {
       loadedProduct: product,
     },
+  };
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: [
+      { params: { product_id: 'p1' } },
+      { params: { product_id: 'p2' } },
+      { params: { product_id: 'p3' } },
+    ],
+    fallback: false,
   };
 }
 
